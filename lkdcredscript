@@ -1,0 +1,43 @@
+# Requires -Modules ImportExcel, ActiveDirectory
+#Get-Module ImportExcel
+#Get-Command -Module ImportExcel
+#Import-Module ImportExcel
+Import-Module -Name ActiveDirectory
+
+# Import emails from Excel
+$emails = Import-Csv -Path "C:\Users\T2-StealthyScout\Desktop\email list.csv" | Select-Object -ExpandProperty Email
+
+foreach ($email in $emails) {
+    # Lookup user in Active Directory by email
+    $user = Get-ADUser -Filter "Mail -eq '$email'" -Properties Enabled, Mail -ErrorAction SilentlyContinue
+
+    if ($user) {
+        if ($user.Enabled) {
+            Write-Host "$email EXISTS (Active)" | Export-Csv -Path "$env:USERPROFILE\Desktop\results.csv" -NoTypeInformation
+        } else {
+            Write-Host "$email EXISTS (Inactive)" | Export-Csv -Path "$env:USERPROFILE\Desktop\results.csv" -NoTypeInformation
+        }
+    } else {
+        Write-Host "$email DOES NOT EXIST" | Export-Csv -Path "$env:USERPROFILE\Desktop\results.csv" -NoTypeInformation
+    }
+    Start-Sleep -Seconds 60
+    Write-Progress
+    [[-Activity] <String>]
+    [[-Status] <String>]
+    [[-Id] <Int32>]
+    [-PercentComplete <Int32>]
+    [-SecondsRemaining <Int32>]
+    [-CurrentOperation <String>]
+    [-ParentId <Int32>]
+    [-Completed]
+    [-SourceId <Int32>]
+    [<CommonParameters>]
+}
+
+
+
+avillavistanorte@livebrighton.com  
+
+avillavistanote website for application 
+
+
