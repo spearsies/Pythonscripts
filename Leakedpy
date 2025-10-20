@@ -5,7 +5,7 @@
 Import-Module -Name ActiveDirectory
 
 # Import emails from Excel
-$emails = Import-Csv -Path "C:\Users\T2-StealthyScout\Desktop\email list.csv" | Select-Object -ExpandProperty Email
+$emails = Import-Csv -Path "C:\path to file.csv" | Select-Object -ExpandProperty Email
 
 foreach ($email in $emails) {
     # Lookup user in Active Directory by email
