@@ -1,4 +1,3 @@
-<#
 .DESCRIPTION
 Python Scripts for SOC Analysts.
 
@@ -6,7 +5,7 @@ Python Scripts for SOC Analysts.
     https://[github.com/Bert-JanP/Incident-Response-Powershell](https://github.com/spearsies/Pythonscripts)
 
 .NOTES
-    The script imports data from a CSV to compare against Active Directory to see if the user exists, is active or not.
+    The repository is a resource for python scripts for SOC Analysts.
 
 
 #>
