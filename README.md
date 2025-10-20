@@ -18,7 +18,5 @@ $Version = '2.2.0'
  |  __/| |_| | |_| | | | (_) | | | |
  |_|    \__, |\__|_| |_|\___/|_| |_|
         |___/                       
-Write-Host $ASCIIBanner
-Write-Host "Version: $Version"
-Write-Host "By twitter: @spearsies, Github:"spearsies"
-Write-Host "===========================================`n"
+
+By twitter: @spearsies, Github:"spearsies"
