@@ -1,3 +1,27 @@
+
+$Version = '2.2.0'
+$ASCIIBanner = @"
+_                _           _           
+ | |    ___  __ _ | | _____  _| |__  _   _ 
+ | |   / _ \/ _` || |/ / _ \| | '_ \| | | |
+ | |__|  __/ (_| ||   <  __/| | |_) | |_| |
+ |_____\___|\__,_||_|\_\___||_|_.__/ \__, |
+                                      |___/ 
+
+   0101010   1100110   0011001   1010101
+      L E A K E D   P Y
+   1001100   0110011   1110001   0100100
+
+       001010101001011001010101001
+         110010011001100100110010
+"@
+Write-Host $ASCIIBanner
+Write-Host "Version: $Version"
+Write-Host "By twitter: @spearsies, Github:"spearsies"
+Write-Host "===========================================`n"
+
+
+
 # Requires -Modules ImportExcel, ActiveDirectory
 #Get-Module ImportExcel
 #Get-Command -Module ImportExcel
