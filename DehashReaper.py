@@ -1,3 +1,44 @@
+<#
+.DESCRIPTION
+    The GhostTrace: AD Identity Scan.
+
+.EXAMPLE
+    Run Script without any parameters
+    .\GhostTrace.ps1
+.EXAMPLE
+
+
+.LINK
+    https://github.com/Bert-JanP/Incident-Response-Powershell
+
+.NOTES
+    The script imports data from a CSV to compare against Active Directory to see if the user exists, is active or not.
+
+
+#>
+
+
+$Version = '2.2.0'
+$ASCIIBanner = @"
+  ____           _                     _         ____                                       
+ |  _ \    ___  | |__     __ _   ___  | |__     |  _ \    ___    __ _   _ __     ___   _ __ 
+ | | | |  / _ \ | '_ \   / _` | / __| | '_ \    | |_) |  / _ \  / _` | | '_ \   / _ \ | '__|
+ | |_| | |  __/ | | | | | (_| | \__ \ | | | |   |  _ <  |  __/ | (_| | | |_) | |  __/ | |   
+ |____/   \___| |_| |_|  \__,_| |___/ |_| |_|   |_| \_\  \___|  \__,_| | .__/   \___| |_|   
+                                                                       |_|                  
+                    D e h a s h   R e a p e r   . p y
+
+
+  DehashReaper.py - hunts through dehashed data, poetic and a bit grim.
+
+"@
+Write-Host $ASCIIBanner
+Write-Host "Version: $Version"
+Write-Host "By twitter: @spearsies, Github:"spearsies"
+Write-Host "===========================================`n"
+
+
+
 #!/usr/bin/env python3
 import argparse
 import sys
