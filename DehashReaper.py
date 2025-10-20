@@ -9,7 +9,7 @@
 
 
 .LINK
-    https://github.com/Bert-JanP/Incident-Response-Powershell
+    https://github.com/spearsies/Pythonscripts/edit/main/DehashReaper.py
 
 .NOTES
     The script imports data from a CSV to compare against Active Directory to see if the user exists, is active or not.
