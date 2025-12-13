@@ -68,8 +68,3 @@ Licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
 - 🎨 Creative designer with a passion for symbolic storytelling  
 - 📈 Actively seeking opportunities as a **Senior Cybersecurity Analyst** with mission-driven organizations  
 
----
-
-This version positions your repo as a **portfolio piece**—a way for recruiters to see your technical skills in action.  
-
-👉 Do you want me to also add a **“Key Projects” section** where we highlight 2–3 standout scripts (with recruiter-friendly explanations of what they demonstrate)? That would make the README even more compelling.
