@@ -1,0 +1,13 @@
+# YouTube Watch Later Videos
+# Add your video URLs here (one per line)
+# Lines starting with # are comments and will be ignored
+
+# Example cybersecurity videos (replace with your own):
+# https://www.youtube.com/watch?v=EXAMPLE_VIDEO_1
+# https://www.youtube.com/watch?v=EXAMPLE_VIDEO_2
+# https://www.youtube.com/watch?v=EXAMPLE_VIDEO_3
+
+# Tips:
+# - One URL per line
+# - Works with watch?v= and youtu.be/ formats
+# - Remove this example content and add your own URLs

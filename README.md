@@ -1,392 +1,318 @@
-# Pythonscripts 🐍
+# YouTube Summarizer for Obsidian
 
-A curated collection of Python-based security automation tools for **cybersecurity professionals, SOC analysts, and penetration testers**. This repository reflects my transition from 23 years of honorable U.S. Army service into a career as a **Senior Cybersecurity Analyst**, blending **discipline, analytical skill, and creative problem-solving** into production-ready security tools.
+Automatically fetch YouTube video transcripts, generate AI-powered summaries, and create organized notes in your Obsidian vault.
 
-[![Python Version](https://img.shields.io/badge/python-3.7%2B-blue.svg)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey.svg)](https://github.com/spearsies/Pythonscripts)
+## Features
 
----
+✅ **Transcript Extraction** - Automatically fetches transcripts from YouTube videos  
+✅ **AI Summaries** - Generates comprehensive summaries using Claude  
+✅ **Key Points** - Extracts 5-7 main takeaways from each video  
+✅ **Smart Tagging** - Auto-generates relevant tags for categorization  
+✅ **Obsidian Integration** - Creates beautifully formatted Markdown notes  
+✅ **Dashboard Generation** - Automatically organizes videos by tags and channels  
+✅ **Batch Processing** - Handle multiple videos from Watch Later playlists  
+✅ **Channel Organization** - Groups videos by YouTube channel  
 
-## 🎯 Purpose
+## Installation
 
-**For Recruiters and Hiring Managers:**
-- **Cybersecurity-focused tools** demonstrating applied knowledge of threat detection, malware analysis, and security automation
-- **Production-ready scripts** showcasing code quality, documentation, and professional development practices
-- **Real-world applications** used in SOC operations, incident response, and penetration testing
+### 1. Clone or Download
 
-**For Security Professionals:**
-- Ready-to-use tools for malware detection, credential leak scanning, and Active Directory validation
-- Customizable security patterns and indicators
-- Multiple output formats for integration with existing workflows
-
-Each tool is designed to be **clear, documented, and reusable**—mirroring the rigor I bring to professional environments.
-
----
-
-## 🛡️ Cybersecurity Expertise
-
-**Stanley Spears** - Senior Cybersecurity Analyst
-- 🎖️ 23 years of honorable U.S. Army service
-- 🔐 Certified Ethical Hacker (CEH), SSCP, Microsoft AZ-500 training
-- 💼 Hands-on experience across healthcare, finance, government, and federal contracting
-- 🛠️ Skilled in **incident response, SOC operations, and security automation**
-- 📝 Creator of *Spears IT Services* cybersecurity blog and home lab for ongoing research
-
-This repository demonstrates how I apply Python to **real-world cybersecurity challenges**—from automated threat detection to bulk user validation.
-
----
-
-## 📋 Table of Contents
-
-- [Tools Overview](#-tools-overview)
-  - [File Scanner](#file-scanner)
-  - [Active Directory User Check](#active-directory-user-check)
-- [Installation](#-installation)
-- [Quick Start](#-quick-start)
-- [Use Cases](#-use-cases)
-- [Documentation](#-documentation)
-- [Legal & Ethical Use](#-legal--ethical-use)
-- [Professional Value](#-professional-value)
-- [Contributing](#-contributing)
-- [Contact](#-contact)
-
----
-
-## 🔧 Tools Overview
-
-### File Scanner
-
-**Automated security scanning for dangerous code patterns and credential leaks**
-
-![File Scanner](https://img.shields.io/badge/status-production-success.svg)
-
-A high-speed file scanner that automates the detection of security vulnerabilities across codebases. Instead of manually reviewing thousands of files, this tool rapidly identifies:
-
-- **Credentials**: Hardcoded passwords, API keys, tokens, secrets
-- **Malicious Code**: eval(), exec(), shell commands, dangerous functions
-- **SQL Injection**: Injection patterns and exploits
-- **Web Shells**: Backdoors and common web shell signatures
-- **Network Activity**: Reverse shells, suspicious connections
-- **Data Exfiltration**: Indicators of data theft
-- **Crypto Miners**: Cryptocurrency mining scripts
-- **Obfuscation**: Base64 encoding, compression tricks
-
-**Key Features:**
-- 10+ detection categories with customizable JSON patterns
-- Multiple output formats (Text, JSON, CSV)
-- GitHub repository scanning support
-- Line-by-line pattern tracking for precise investigation
-- Binary file detection and filtering
-- Recursive directory scanning with smart exclusions
-
-**Quick Example:**
-```python
-from file_scanner import FileScanner
-
-scanner = FileScanner()
-results = scanner.scan_directory('./my_project', recursive=True)
-scanner.generate_report('security_scan.txt', 'text')
-```
-
-**Real-World Applications:**
-- SOC analysts scanning incident artifacts for malware signatures
-- Penetration testers finding hardcoded credentials in client code
-- Security researchers conducting OSINT on public repositories
-- Developers preventing credential leaks before deployment
-
-**Learn More:** [FILE_SCANNER_README.md](FILE_SCANNER_README.md)
-
----
-
-### Active Directory User Check
-
-**Bulk validation of Active Directory user accounts from CSV files**
-
-![AD Check](https://img.shields.io/badge/status-production-success.svg)
-
-Quickly verify if users exist and are active in your Active Directory environment. Essential for security audits, access reviews, and compliance reporting.
-
-**Key Features:**
-- CSV input/output for bulk processing
-- LDAP/NTLM authentication
-- User status detection (active/disabled)
-- Email and display name retrieval
-- Summary statistics and reporting
-
-**Quick Example:**
-```python
-# Configure AD settings in script
-python check_ad_users.py
-# Input: usernames.csv → Output: ad_check_results.csv
-```
-
-**Real-World Applications:**
-- Security audits and access reviews
-- Offboarding verification
-- Compliance reporting for SOX, HIPAA, etc.
-- Incident response user enumeration
-
----
-
-## 🚀 Installation
-
-### Requirements
-
-- Python 3.7 or higher
-- pip (Python package manager)
-
-### Setup
-
-1. **Clone the repository:**
 ```bash
-git clone https://github.com/spearsies/Pythonscripts.git
-cd Pythonscripts
+git clone <repository-url>
+cd youtube-summarizer
 ```
 
-2. **Install dependencies:**
+### 2. Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
-**Note:** The File Scanner has no external dependencies and uses only Python's standard library.
+Required packages:
+- `youtube-transcript-api` - Fetches video transcripts
+- `anthropic` - Generates AI summaries with Claude
 
----
+### 3. Set Up API Key
 
-## ⚡ Quick Start
+Get your Anthropic API key from https://console.anthropic.com/
 
-### Scan Files for Security Issues
-
+**Option A: Environment Variable (Recommended)**
 ```bash
-# Scan current directory
-python file_scanner.py
-
-# View examples
-python scanner_examples.py
+export ANTHROPIC_API_KEY="your-api-key-here"
 ```
 
-### Check Active Directory Users
-
-```bash
-# 1. Edit check_ad_users.py with your AD configuration
-# 2. Prepare usernames.csv with user list
-# 3. Run the script
-python check_ad_users.py
-
-# 4. Review ad_check_results.csv for results
+**Option B: .env File**
+Create a `.env` file:
+```
+ANTHROPIC_API_KEY=your-api-key-here
 ```
 
-### Custom Security Indicators
+### 4. Configure Vault Path
 
-Create a custom `indicators.json` file:
-
-```json
-{
-  "custom_patterns": [
-    "SECRET_KEY",
-    "private_token",
-    "admin_password"
-  ],
-  "malware_signatures": [
-    "malicious_function",
-    "backdoor_code"
-  ]
-}
-```
-
-Then load it:
+Edit `youtube_summarizer_enhanced.py` or create `config.py`:
 
 ```python
-from file_scanner import FileScanner
-
-scanner = FileScanner(indicators_file='indicators.json')
-results = scanner.scan_directory('.')
-scanner.generate_report('custom_scan.json', 'json')
+VAULT_PATH = "/Users/stanley/ObsidianVault"  # Update this
 ```
 
----
+## Usage
 
-## 💼 Use Cases
+### Command Line Interface (Recommended)
 
-### For SOC Analysts
+#### Process a Single Video
 
-- **Incident Response**: Quickly scan compromised systems for malware signatures
-- **Threat Hunting**: Search codebases for indicators of compromise (IOCs)
-- **Log Analysis**: Detect suspicious patterns in application logs
-- **User Account Audits**: Validate user access across AD environments
+```bash
+python cli.py -u "https://www.youtube.com/watch?v=VIDEO_ID"
+```
 
-### For Penetration Testers
+#### Process Multiple Videos from File
 
-- **Credential Discovery**: Find hardcoded passwords and API keys in source code
-- **Web Shell Detection**: Identify backdoors on compromised servers
-- **Code Review**: Automate vulnerability detection in client applications
-- **Reconnaissance**: Enumerate user accounts and status
+Create a text file `watch_later.txt`:
+```
+https://www.youtube.com/watch?v=VIDEO_ID_1
+https://www.youtube.com/watch?v=VIDEO_ID_2
+https://www.youtube.com/watch?v=VIDEO_ID_3
+```
 
-### For Security Researchers
+Then run:
+```bash
+python cli.py -f watch_later.txt
+```
 
-- **OSINT**: Scan public GitHub repositories for leaked credentials
-- **Malware Analysis**: Identify malicious code patterns in suspicious files
-- **Vulnerability Research**: Detect common security anti-patterns
-- **Security Audits**: Automated code security reviews
+#### Interactive Mode
 
-### For IT Administrators
+```bash
+python cli.py -i
+```
 
-- **Pre-deployment Checks**: Scan code for secrets before production
-- **Compliance**: Ensure no sensitive data in repositories
-- **Access Reviews**: Bulk validate user account status
-- **Audit Trail**: Document security scanning activities
+Enter URLs one at a time, type `done` when finished.
 
----
+#### Generate Dashboard Only
 
-## 📚 Documentation
+```bash
+python cli.py --dashboard
+```
 
-### Comprehensive Guides
+### Python API
 
-- **[FILE_SCANNER_README.md](FILE_SCANNER_README.md)** - Complete file scanner documentation
-  - Detailed feature explanations
-  - Advanced usage examples
-  - Configuration options
-  - Performance optimization
-  - Troubleshooting guide
+```python
+from youtube_summarizer_enhanced import process_youtube_url
 
-- **[scanner_examples.py](scanner_examples.py)** - Practical code examples
-  - Scanning for specific credential types
-  - GitHub repository scanning
-  - Custom indicator usage
-  - Web shell detection
+# Process a single video
+url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+note_path = process_youtube_url(url)
 
-- **[CLAUDE.MD](CLAUDE.MD)** - AI assistant context file
-  - Repository structure
-  - Development guidelines
-  - Security considerations
+# Process multiple videos
+from youtube_summarizer_enhanced import process_watch_later_playlist
 
-### Configuration Files
+urls = [
+    "https://www.youtube.com/watch?v=VIDEO_1",
+    "https://www.youtube.com/watch?v=VIDEO_2",
+]
+process_watch_later_playlist(urls)
+```
 
-- `indicators.json` - Custom security pattern definitions
-- `requirements.txt` - Python package dependencies
-- `usernames.csv` - Sample CSV format for AD user checks
+## Generated Note Structure
 
----
+Each video note includes:
 
-## ⚖️ Legal & Ethical Use
+```markdown
+# Video Title
 
-**IMPORTANT:** These tools are for authorized security testing only.
+## Metadata
+- **Video ID:** abc123
+- **URL:** https://youtube.com/watch?v=abc123
+- **Channel:** [[Channel Name]]
+- **Created:** 2024-12-23
+- **Tags:** #youtube #security #malware
 
-### ✅ Authorized Use
+## Summary
+AI-generated comprehensive summary (2-3 paragraphs)
 
-- Your own code and systems
-- Security audits with written authorization
-- Penetration tests with explicit permission
-- Educational and research purposes
-- Defensive security operations
+## Key Points
+- Main takeaway 1
+- Main takeaway 2
+- Main takeaway 3
+...
 
-### ❌ Prohibited Use
+## Transcript
+```
+[00:15] First line of transcript
+[00:32] Second line of transcript
+...
+```
+```
 
-- Unauthorized access to systems
-- Scanning systems without permission
-- Exploiting discovered vulnerabilities without authorization
-- Violating privacy laws or regulations
-- Malicious purposes of any kind
+## Dashboard Organization
 
-**By using these tools, you agree to use them responsibly and only on systems you own or have explicit permission to test.**
+The script automatically generates dashboards:
 
----
+### Weekly Dashboard
+- Groups videos by tags
+- Groups videos by channels
+- Shows chronological list
 
-## ✨ Professional Value
+### Monthly Dashboard (Coming Soon)
+- Links to all weekly dashboards
+- Monthly statistics
 
-This repository is more than code—it's a **portfolio of applied cybersecurity expertise**.
-
-**What This Demonstrates:**
-
-🎖️ **Strategic Thinking** - Military-honed problem-solving applied to security automation
-🔐 **Technical Depth** - Production-ready tools used in real SOC operations
-🛠️ **Code Quality** - Professional documentation, error handling, and maintainability
-📊 **Practical Impact** - Tools that solve actual security challenges, not just academic exercises
-🔄 **Continuous Learning** - Active development and improvement based on field experience
-
-**Professional Development Practices:**
-- Comprehensive documentation and code comments
-- Modular, reusable code architecture
-- Multiple output formats for workflow integration
-- Error handling and input validation
-- Performance optimization
-- Security-first design principles
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Here are some ways you can help:
-
-- Report bugs and suggest features via [Issues](https://github.com/spearsies/Pythonscripts/issues)
-- Submit pull requests with improvements
-- Add new detection patterns to indicators
-- Improve documentation
-- Share your use cases and examples
-
-### Development Guidelines
-
-1. Follow PEP 8 style guidelines
-2. Add docstrings to all functions
-3. Include usage examples for new features
-4. Test thoroughly before submitting PRs
-5. Update documentation as needed
-
----
-
-## 🗺️ Roadmap
-
-Future enhancements planned:
-
-- [ ] Regex pattern support in file scanner
-- [ ] Multi-threaded scanning for better performance
-- [ ] SIEM integration capabilities (Splunk, ELK)
-- [ ] Web-based dashboard for results
-- [ ] Additional output formats (HTML, PDF)
-- [ ] Real-time directory monitoring
-- [ ] Azure AD support for user validation
-- [ ] Integration with popular security tools (MISP, TheHive)
-
----
-
-## 📜 License
-
-Licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
-
-Free to use for security research, testing, and educational purposes.
-
----
-
-## 👤 Contact
-
-**Stanley Spears** (cyb3rlop3)
-Senior Cybersecurity Analyst
-
-- **Email:** stan.spears@outlook.com
-- **GitHub:** [@spearsies](https://github.com/spearsies)
-- **Twitter:** [@spearsies](https://twitter.com/spearsies)
-- **LinkedIn:** [Stanley Spears](https://linkedin.com/in/stanleyspears)
-
-🎖️ Retired Army veteran | 🔐 CEH, SSCP, AZ-500 | 📈 Seeking opportunities as a Senior Cybersecurity Analyst with mission-driven organizations
-
----
-
-## 🙏 Acknowledgments
-
-Built for the security community by security professionals. Special thanks to all SOC analysts and security researchers who inspire better tooling.
-
----
-
-**⭐ Star this repository if you find it useful!**
-
-**Remember:** Always use these tools responsibly and ethically. Security tools are powerful - use them wisely.
+### Directory Structure
 
 ```
-  ____  _                   _  ___            
- / ___|(_) __ _ _ __   __ _| |/ _ \ _ __  ___ 
- \___ \| |/ _` | '_ \ / _` | | | | | '_ \/ __|
-  ___) | | (_| | | | | (_| | | |_| | |_) \__ \
- |____/|_|\__, |_| |_|\__,_|_|\___/| .__/|___/
-          |___/                    |_|            
+ObsidianVault/
+├── YouTube Notes/
+│   ├── Video Title 1.md
+│   ├── Video Title 2.md
+│   └── ...
+├── Channels/
+│   └── (Future: channel-specific pages)
+└── Dashboards/
+    ├── Week_2024-12-23.md
+    ├── Week_2024-12-16.md
+    └── ...
+```
 
-By twitter: @spearsies, Github:"spearsies"
+## How It Works
+
+1. **Extract Video ID** - Parses YouTube URL to get video ID
+2. **Fetch Transcript** - Uses YouTube Transcript API to get captions
+3. **Generate Summary** - Sends transcript to Claude for analysis
+4. **Extract Metadata** - Parses video title, channel, tags
+5. **Create Note** - Generates formatted Markdown in Obsidian vault
+6. **Update Dashboard** - Organizes videos by category
+
+## Configuration Options
+
+Edit `config_template.py` and save as `config.py`:
+
+```python
+# Vault Settings
+VAULT_PATH = "~/ObsidianVault"
+VIDEOS_FOLDER = "YouTube Notes"
+
+# Summary Settings
+SUMMARY_MODEL = "claude-sonnet-4-20250514"
+MAX_TRANSCRIPT_LENGTH = 8000
+
+# Transcript Settings
+PREFERRED_LANGUAGES = ['en', 'en-US', 'en-GB']
+
+# Dashboard Settings
+WEEKLY_LOOKBACK_DAYS = 7
+DEFAULT_TAG = "#youtube"
+```
+
+## Troubleshooting
+
+### No Transcript Available
+
+Some videos don't have transcripts (disabled by creator or auto-captions unavailable). The script will create a basic note with metadata only.
+
+### API Rate Limits
+
+If processing many videos, you may hit Anthropic API rate limits. The script handles this gracefully and continues with remaining videos.
+
+### File Permission Errors
+
+Ensure your Obsidian vault path is correct and you have write permissions.
+
+### Module Not Found
+
+Make sure you've installed all dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+## Advanced Features
+
+### Custom Note Templates
+
+Modify `_build_note_content()` in `ObsidianNoteCreator` class to customize note format.
+
+### Tag Customization
+
+The AI automatically generates relevant tags, but you can add your own in the `DEFAULT_TAG` setting.
+
+### Batch Processing
+
+Process large playlists efficiently:
+
+```python
+# In youtube_summarizer_enhanced.py
+BATCH_SIZE = 10  # Process 10 videos at a time
+PAUSE_BETWEEN_BATCHES = 5  # 5 second pause between batches
+```
+
+## Getting YouTube Watch Later URLs
+
+### Method 1: Manual Export
+1. Go to https://www.youtube.com/playlist?list=WL
+2. Copy each video URL
+3. Paste into a text file
+
+### Method 2: Browser Extension
+Use a browser extension like "Copy All URLs" to export all URLs at once.
+
+### Method 3: YouTube Data API (Advanced)
+Use Google's YouTube Data API to programmatically fetch your Watch Later playlist.
+
+## Examples
+
+### Process Security Conference Talks
+
+```bash
+# Create a file with DefCon talks
+cat > defcon_talks.txt << EOF
+https://www.youtube.com/watch?v=TALK_1
+https://www.youtube.com/watch?v=TALK_2
+https://www.youtube.com/watch?v=TALK_3
+EOF
+
+# Process them
+python cli.py -f defcon_talks.txt
+```
+
+### Daily Research Workflow
+
+```bash
+# 1. Export today's Watch Later videos to file
+# 2. Process them
+python cli.py -f todays_videos.txt
+
+# 3. Generate dashboard
+python cli.py --dashboard
+
+# 4. Open Obsidian and review your notes!
+```
+
+## Contributing
+
+Improvements welcome! Some ideas:
+
+- [ ] YouTube Data API integration for automatic Watch Later sync
+- [ ] Support for playlists
+- [ ] Video thumbnail download
+- [ ] Speaker identification in transcripts
+- [ ] Custom summary prompts
+- [ ] Export to other note-taking apps
+
+## License
+
+MIT License - feel free to use and modify!
+
+## Credits
+
+- Built with [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api)
+- Powered by [Anthropic Claude](https://www.anthropic.com/)
+- Designed for [Obsidian](https://obsidian.md/)
+
+## Support
+
+For issues or questions:
+1. Check the Troubleshooting section
+2. Review the examples
+3. Open an issue on GitHub
+
+---
+
+**Happy note-taking! 📝**

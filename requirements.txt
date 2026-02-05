@@ -1,0 +1,14 @@
+# YouTube Summarizer Dependencies
+
+# Core dependencies
+youtube-transcript-api>=0.6.0
+anthropic>=0.42.0
+
+# Optional dependencies for enhanced features
+pyperclip>=1.9.0  # For clipboard support
+requests>=2.31.0  # For HTTP requests
+python-dotenv>=1.0.0  # For .env file support
+
+# Development dependencies (optional)
+pytest>=7.4.0  # For testing
+black>=23.0.0  # For code formatting
